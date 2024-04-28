@@ -1,0 +1,123 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model customerBranch {
+  ID         Int     @id @default(autoincrement())
+  customerID Int
+  branchName String  @db.VarChar(255)
+  address1   String? @db.VarChar(255)
+  address2   String? @db.VarChar(255)
+  city       String? @db.VarChar(255)
+  state      String? @db.VarChar(255)
+  zip        String? @db.VarChar(15)
+}
+
+model customerContact {
+  id           Int     @id @default(autoincrement())
+  customerID   Int
+  branchID     Int?
+  contactName  String  @db.VarChar(255)
+  contactEmail String? @db.VarChar(255)
+  contactPhone String? @db.VarChar(255)
+  contactFax   String? @db.VarChar(255)
+  contactNotes String? @db.VarChar(255)
+}
+
+model customers {
+  ID           Int     @id
+  customerName String  @db.VarChar(255)
+  address1     String? @db.VarChar(255)
+  address2     String? @db.VarChar(255)
+  city         String? @db.VarChar(255)
+  state        String? @db.VarChar(255)
+  zip          Int?    @db.Int
+}
+
+model dieBook {
+  id         Int          @id @default(autoincrement())
+  type       dieBook_type
+  customer   Int
+  material   Int
+  partNumber Int
+  outDim     String       @db.VarChar(255)
+  inDim      String       @db.VarChar(255)
+  notes      String       @db.VarChar(255)
+}
+
+model materials {
+  ID           Int     @id @default(autoincrement())
+  material     String  @db.VarChar(255)
+  materialType String  @db.VarChar(255)
+  description  String? @db.VarChar(255)
+  width        String  @db.VarChar(255)
+  uom          String  @db.VarChar(5)
+  supplier     String? @db.VarChar(255)
+  costPer      Decimal @db.Decimal(10, 6)
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model quoteMaterials {
+  quoteID    Int
+  materialID Int
+  math       Decimal  @db.Decimal(10, 0)
+  per        Int
+  altCost    Decimal? @db.Decimal(10, 0)
+
+  @@ignore
+}
+
+model quoteTasks {
+  id      Int     @id @default(autoincrement())
+  quoteID Int
+  taskID  Int
+  hour    Decimal @db.Decimal(4, 2)
+  rate    Decimal @db.Decimal(5, 2)
+}
+
+model quotes {
+  ID            Int      @id @default(autoincrement())
+  customerID    String?  @db.VarChar(255)
+  contactID     Int
+  partNumber    String   @db.VarChar(255)
+  rev           String?  @db.TinyText
+  uom           String?  @db.VarChar(255)
+  markUp        Decimal? @db.Decimal(10, 4)
+  perHour       Int
+  pricePer      Decimal? @db.Decimal(10, 4)
+  kd            String   @db.Char(1)
+  kdNumber      String?  @db.Char(10)
+  toolingCharge Decimal  @db.Decimal(10, 2)
+  notes         String   @db.LongText
+  lastUpdated   DateTime @db.Date
+}
+
+model tasks {
+  ID       Int      @id @default(autoincrement())
+  taskName String   @db.VarChar(255)
+  setUp    Decimal? @db.Decimal(11, 2)
+  rate     Decimal  @db.Decimal(15, 2)
+  type     String   @db.VarChar(255)
+  tooling  String?  @db.VarChar(100)
+}
+
+model users {
+  ID          Int     @id @default(autoincrement())
+  username    String  @db.VarChar(255)
+  pass        String  @db.VarChar(255)
+  email       String  @db.VarChar(255)
+  firstName   String  @db.VarChar(255)
+  lastName    String? @db.VarChar(255)
+  preferredMU Decimal @db.Decimal(5, 2)
+}
+
+enum dieBook_type {
+  K
+  D
+}

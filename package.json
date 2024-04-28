@@ -1,0 +1,39 @@
+{
+	"private": true,
+	"sideEffects": false,
+	"type": "module",
+	"scripts": {
+		"build": "remix build",
+		"dev": "remix dev",
+		"start": "remix-serve build",
+		"typecheck": "tsc"
+	},
+	"dependencies": {
+		"@prisma/client": "5.13.0",
+		"@remix-run/node": "2.9.0",
+		"@remix-run/react": "2.9.0",
+		"@remix-run/serve": "2.9.0",
+		"isbot": "5.1.4",
+		"marked": "12.0.2",
+		"react": "18.2.0",
+		"react-dom": "18.2.0"
+	},
+	"devDependencies": {
+		"@remix-run/dev": "2.9.0",
+		"@remix-run/eslint-config": "2.9.0",
+		"@types/css-modules": "^1.0.5",
+		"@types/marked": "6.0.0",
+		"@types/react": "18.2.79",
+		"@types/react-dom": "18.2.25",
+		"eslint": "8.57.0",
+		"prisma": "5.13.0",
+		"ts-node": "10.9.2",
+		"typescript": "5.4.5"
+	},
+	"engines": {
+		"node": "21.7.3"
+	},
+	"prisma": {
+		"seed": "node --loader ts-node/esm prisma/seed.ts"
+	}
+}

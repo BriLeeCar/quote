@@ -1,0 +1,14 @@
+button {
+  border: 0;
+}
+
+.cancelX {
+  color: hsl(0, 62%, 62%);
+  font-weight: bolder;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+.cancelX:hover {
+  color: #ff3d3d;
+}

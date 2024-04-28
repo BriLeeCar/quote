@@ -1,0 +1,82 @@
+details#materialDetails div {
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: start;
+
+    .headerMat {
+        display: flex;
+        align-items: baseline;
+        -moz-column-gap: 2em;
+        column-gap: 2em;
+        grid-area: 1 / 1 / 2 / 2;
+        margin: 0;
+    }
+
+    .descMat {
+        grid-column: span 2;
+        text-align: end;
+        font-style: italic;
+    }
+
+    .detMat {
+        grid-area: 1 / 2 / 3 / 3;
+        display: flex;
+        justify-content: flex-end;
+        flex-direction: row;
+        align-items: center;
+
+        b {
+            text-align: end;
+            padding: 0em 0.5em 0em 1.5em;
+        }
+    }
+}
+
+div:has(>.headerMat) {
+    display: flex;
+    column-gap: 1em;
+    align-items: center;
+
+    >p {
+        margin: 0;
+        width: 35%;
+        text-align: left;
+        font-size: .75em;
+    }
+}
+
+#addQtyDetails {
+    #addedQtyList {
+        display: flex;
+        flex-direction: column;
+
+        input {
+            margin: auto .5ch;
+        }
+
+        span {
+            display: flex;
+            align-items: stretch;
+            column-gap: .5em;
+            margin: .1em 0;
+            padding: .2em;
+
+            &:nth-of-type(odd) {
+                background-color: #0000001a;
+            }
+
+            .cancelX {
+                margin-left: 1em;
+            }
+        }
+    }
+}
+
+input#materialSearch,
+input#customerSearch {
+    width: 40%;
+}
+
+input:-webkit-autofill-selected {
+    color: red;
+}
