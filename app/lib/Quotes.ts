@@ -123,4 +123,5 @@ export class Material implements tMaterial {
 			? new Prisma.Decimal(costPer)
 			: new Prisma.Decimal(0.0);
 	}
+	updateMaterial(material: string) {}
 }

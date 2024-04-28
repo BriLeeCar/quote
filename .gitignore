@@ -4,4 +4,6 @@ node_modules
 /build
 /public/build
 .env
-.vscode
+/.vscode
+/_build
+.DS_Store
